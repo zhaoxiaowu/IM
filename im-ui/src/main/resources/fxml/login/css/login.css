@@ -1,0 +1,75 @@
+#login{
+    -fx-background-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-border-color: rgb(180,180,180);
+    -fx-background-color: white;
+}
+#operation{
+    -fx-border-color: rgb(180,180,180);
+    -fx-border-width: 1px 1px 0 1px;
+    -fx-border-radius: 4px 4px 0 0;
+    -fx-background-color: #238efa;
+    /*-fx-background-image: url("/fxml/login/image/background.png");*/
+}
+.logo{
+    -fx-font-size: 18px;
+    -fx-text-fill: #FFFFFF;
+    -fx-alignment: center;
+}
+.close{
+    -fx-background-radius: 2px;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px 20px;
+    -fx-background-color: transparent;
+    -fx-background-image: url("/fxml/login/image/close.png");
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+.close:hover{
+    -fx-background-color: #bcc0f0;
+}
+.min{
+    -fx-background-radius: 2px;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px 20px;
+    -fx-background-color: transparent;
+    -fx-background-image: url("/fxml/login/image/min.png");
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+.min:hover{
+    -fx-background-color: #bcc0f0;
+}
+.login_button{
+    -fx-background-size: 43px 43px;
+    /*-fx-background-color: #05bafb;*/
+    -fx-background-color: #238efa;
+    -fx-cursor: hand;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-font-family: "微软雅黑";
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-alignment: center;
+}
+.login_button:hover{
+    -fx-background-color: #1fc7fd;
+}
+
+#headImg{
+    /*设置背景颜色渐变*/
+    /*-fx-background-color: linear-gradient(to right,#00fffc,#fff600);*/
+    /*!*-fx-background-radius: 20px;*!*/
+    /*-fx-background-position: center center;*/
+    /*!*-fx-background-repeat: no-repeat;*!*/
+    -fx-pref-width: 66px;
+    -fx-pref-height: 66px;
+    /*设置圆角*/
+    -fx-border-radius: 33px;
+    -fx-border-width: 2px;
+    -fx-border-color: #b3daf6;
+    /*-fx-background-image: url("/fxml/login/image/head.png");*/
+}

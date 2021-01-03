@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.effect.DropShadow?>
+
+<Pane id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325"
+      prefWidth="425" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <!--操作栏-->
+        <Pane id="operation" prefHeight="125" prefWidth="425">
+            <children>
+                <!-- ；最小化、关闭 -->
+                <Pane prefHeight="40" prefWidth="425">
+                    <children>
+                        <Label id="login_logo" layoutX="10" layoutY="5" prefHeight="40" prefWidth="100"
+                               styleClass="logo" text="IM即时通信"/>
+                        <Button id="login_min" layoutX="365" prefHeight="30" prefWidth="30" styleClass="min"/>
+                        <Button id="login_close" layoutX="395" prefHeight="30" prefWidth="30" styleClass="close"/>
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+
+        <!-- 头像 -->
+        <Pane id="headImg" layoutX="180" layoutY="85.0">
+            <children>
+                <ImageView layoutX="3.0" layoutY="2.0">
+                    <image>
+                        <Image url="@image/head.png"/>
+                    </image>
+                    <fitWidth>60.0</fitWidth>
+                    <fitHeight>60.0</fitHeight>
+                    <clip>
+                        <Circle fx:id="circle" centerX="30" centerY="30" fill="aqua">
+                            <radius>30</radius>
+                        </Circle>
+                    </clip>
+                </ImageView>
+            </children>
+        </Pane>
+
+        <TextField id="userId" layoutX="95" layoutY="160" prefHeight="35" prefWidth="235" promptText="账号">
+            <padding>
+                <Insets left="10"/>
+            </padding>
+        </TextField>
+
+        <PasswordField id="userPassword" layoutX="95" layoutY="200" prefHeight="35" prefWidth="235" promptText="密码">
+            <padding>
+                <Insets left="10"/>
+            </padding>
+        </PasswordField>
+
+        <Button id="login_button" layoutX="95" layoutY="260" prefHeight="35" prefWidth="235" styleClass="login_button"
+                text="登录"/>
+    </children>
+</Pane>
