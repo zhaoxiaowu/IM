@@ -3,11 +3,11 @@ package com.zxw.ui.view.login;
 /**
  * 窗口控制器   管理视图  事件（第三方事件  窗口事件） 窗口方法
  */
-public class ILoginController extends LoginView implements ILoginMethod {
+public class LoginController extends LoginView implements ILoginMethod {
 
     private LoginEventDefine loginEventDefine;
 
-    public ILoginController(ILoginEvent ILoginEvent) {
+    public LoginController(ILoginEvent ILoginEvent) {
         super(ILoginEvent);
     }
 

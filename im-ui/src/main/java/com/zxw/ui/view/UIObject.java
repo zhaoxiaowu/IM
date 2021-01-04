@@ -16,6 +16,9 @@ public abstract class UIObject extends Stage {
     private double xOffset;
     private double yOffset;
 
+    /**
+     * <T>指明是一个泛型方法 Class<T> clazz确定具体类型
+     */
     public <T> T $(String id, Class<T> clazz) {
         return (T) root.lookup("#" + id);
     }
