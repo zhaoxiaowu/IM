@@ -44,7 +44,7 @@ public abstract class LoginView extends UIObject {
         setScene(scene);
         initStyle(StageStyle.TRANSPARENT);
         setResizable(false);
-        this.getIcons().add(new Image("/fxml/login/image/logo.png"));
+        this.getIcons().add(new Image("/fxml/common/img/logo.png"));
         obtain();
         initView();
         initEventDefine();

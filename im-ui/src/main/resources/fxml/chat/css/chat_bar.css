@@ -1,0 +1,95 @@
+/* 控制栏 */
+#bar{
+   -fx-background-color: #f0f2f5;
+   -fx-background-radius: 4px 0px 0px 4px;
+
+    /*-fx-border-width: 1px;*/
+    /*!*-fx-border-radius: 4px;*!*/
+    /*-fx-border-color: #d2d4d6;*/
+}
+
+#bar_portrait,#bar_portrait:hover,#bar_portrait:pressed{
+    -fx-background-radius: 2px;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 50px 50px;
+    -fx-background-color: white;
+    -fx-background-image: url("/fxml/chat/img/photo.png");
+    -fx-cursor: hand;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-border-color: white;
+}
+
+#bar_chat{
+    -fx-background-radius: 2px;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px 30px;
+    -fx-background-color: transparent;
+    -fx-background-image: url("/fxml/chat/img/chat-2.png");
+    -fx-cursor: hand;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-border-color: transparent;
+}
+
+#bar_friend{
+    -fx-background-radius: 2px;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px 30px;
+    -fx-background-color: transparent;
+    -fx-background-image: url("/fxml/chat/img/friend.png");
+    -fx-cursor: hand;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-border-color: transparent;
+}
+
+/*#bar_friend:hover{*/
+/*    -fx-background-image: url("/fxml/chat/img/group.png");*/
+/*}*/
+
+
+#bar_group{
+        -fx-background-radius: 2px;
+        -fx-background-position: center center;
+        -fx-background-repeat: no-repeat;
+        -fx-background-size: 30px 30px;
+        -fx-background-color: transparent;
+        -fx-background-image: url("/fxml/chat/img/group.png");
+        -fx-cursor: hand;
+        -fx-border-width: 1px;
+        -fx-border-radius: 2px;
+        -fx-border-color: transparent;
+}
+
+/*#bar_group:hover{*/
+/*    -fx-background-image: url("/fxml/chat/img/photo1.png");*/
+/*}*/
+
+/*#bar_group:pressed{*/
+/*    -fx-background-image: url("/fxml/chat/img/photo1.png");*/
+/*}*/
+
+#bar_set{
+        -fx-background-radius: 2px;
+        -fx-background-position: center center;
+        -fx-background-repeat: no-repeat;
+        -fx-background-size: 30px 30px;
+        -fx-background-color: transparent;
+        -fx-background-image: url("/fxml/chat/img/set.png");
+        -fx-cursor: hand;
+        -fx-border-width: 1px;
+        -fx-border-radius: 2px;
+        -fx-border-color: transparent;
+}
+
+/*#bar_set:hover{*/
+/*    -fx-background-image: url("/fxml/chat/img/group.png");*/
+/*}*/
+
+/*#bar_set:pressed{*/
+/*    -fx-background-image: url("/fxml/chat/img/group.png");*/
+/*}*/

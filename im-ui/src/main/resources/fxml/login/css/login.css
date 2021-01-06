@@ -23,7 +23,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: 20px 20px;
     -fx-background-color: transparent;
-    -fx-background-image: url("/fxml/login/image/close.png");
+    -fx-background-image: url("/fxml/login/img/close.png");
     -fx-cursor: hand;
     -fx-border-width: 0;
 }
@@ -36,7 +36,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: 20px 20px;
     -fx-background-color: transparent;
-    -fx-background-image: url("/fxml/login/image/min.png");
+    -fx-background-image: url("/fxml/login/img/min.png");
     -fx-cursor: hand;
     -fx-border-width: 0;
 }
@@ -71,5 +71,5 @@
     -fx-border-radius: 33px;
     -fx-border-width: 2px;
     -fx-border-color: #b3daf6;
-    /*-fx-background-image: url("/fxml/login/image/head.png");*/
+    /*-fx-background-image: url("/fxml/login/image/photo1.png");*/
 }

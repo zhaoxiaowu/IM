@@ -1,7 +1,7 @@
 package com.zxw.ui;
 
-import com.zxw.ui.view.login.ILoginMethod;
-import com.zxw.ui.view.login.LoginController;
+import com.zxw.ui.view.chat.ChatController;
+import com.zxw.ui.view.chat.IChatMethod;
 import javafx.stage.Stage;
 
 
@@ -10,11 +10,8 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        ILoginMethod login = new LoginController((userId, userPassword) -> {
-            System.out.println("登陆 userId：" + userId + "userPassword：" + userPassword);
-        });
-
-        login.doShow();
+        IChatMethod chat = new ChatController();
+        chat.doShow();
     }
 
     public static void main(String[] args) {
