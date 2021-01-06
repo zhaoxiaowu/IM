@@ -99,9 +99,9 @@
 
 .element_msgData{
    /*-fx-background-color: blue;*/
-   -fx-font-family: "微软雅黑";
+   /*-fx-font-family: "微软雅黑";*/
    -fx-text-fill: #999999;
-   -fx-font-size: 12px;
+   -fx-font-size: 10px;
    -fx-white-space: nowrap;
    -fx-overflow: hidden;
    -fx-text-overflow: ellipsis;

@@ -1,35 +1,34 @@
-#operation{
+#right-top{
     -fx-background-color: #f5f5f5;
 }
+#right-btm{
+    -fx-border-color: #d9d9d9;
+    -fx-border-width: 1px;
+}
 
-.close,.close:pressed{
+.close{
     -fx-background-radius: 2px;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 43px 34px;
+    -fx-background-size: 16px 16px;
     -fx-background-color: transparent;
-    -fx-background-image: url("/fxml/chat/img/close_0.png");
+    -fx-background-image: url("/fxml/chat/img/close.png");
     -fx-cursor: hand;
     -fx-border-width: 0;
 }
-
 .close:hover{
-    -fx-background-color: #f45454;
-    -fx-background-image: url("/fxml/chat/img/close_1.png");
+    -fx-background-color: #bcc0f0;
 }
-
-.min,.min:pressed{
+.min{
     -fx-background-radius: 2px;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 43px 34px;
+    -fx-background-size: 16px 16px;
     -fx-background-color: transparent;
-    -fx-background-image: url("/fxml/chat/img/min_0.png");
+    -fx-background-image: url("/fxml/chat/img/min.png");
     -fx-cursor: hand;
     -fx-border-width: 0;
 }
-
 .min:hover{
-    -fx-background-color: derive(#c7c6c6, 10%);
-    -fx-background-image: url("/fxml/chat/img/min_1.png");
+    -fx-background-color: #bcc0f0;
 }

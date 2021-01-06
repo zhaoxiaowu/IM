@@ -30,24 +30,24 @@ public class ElementTalk {
         pane = new Pane();
         pane.setId(Ids.ElementTalkId.createTalkPaneId(talkId));
         pane.setUserData(new TalkBoxData(talkId, talkType, talkName, talkHead));
-        pane.setPrefSize(270, 80);
+        pane.setPrefSize(250, 60);
         pane.getStyleClass().add("talkElement");
         ObservableList<Node> children = pane.getChildren();
 
         // 头像区域
         head = new Label();
-        head.setPrefSize(50, 50);
-        head.setLayoutX(15);
-        head.setLayoutY(15);
+        head.setPrefSize(40, 40);
+        head.setLayoutX(10);
+        head.setLayoutY(10);
         head.getStyleClass().add("element_head");
         head.setStyle(String.format("-fx-background-image: url('/fxml/chat/img/head/%s.png')", talkHead));
         children.add(head);
 
         // 昵称区域
         nikeName = new Label();
-        nikeName.setPrefSize(140, 25);
-        nikeName.setLayoutX(80);
-        nikeName.setLayoutY(15);
+        nikeName.setPrefSize(135, 20);
+        nikeName.setLayoutX(60);
+        nikeName.setLayoutY(10);
         nikeName.setText(talkName);
         nikeName.getStyleClass().add("element_nikeName");
         children.add(nikeName);
@@ -55,18 +55,18 @@ public class ElementTalk {
         // 信息简述
         msgSketch = new Label();
         msgSketch.setId(Ids.ElementTalkId.createMsgSketchId(talkId));
-        msgSketch.setPrefSize(200, 25);
-        msgSketch.setLayoutX(80);
-        msgSketch.setLayoutY(40);
+        msgSketch.setPrefSize(135, 20);
+        msgSketch.setLayoutX(60);
+        msgSketch.setLayoutY(30);
         msgSketch.getStyleClass().add("element_msgSketch");
         children.add(msgSketch);
 
         // 信息时间
         msgData = new Label();
         msgData.setId(Ids.ElementTalkId.createMsgDataId(talkId));
-        msgData.setPrefSize(60, 25);
-        msgData.setLayoutX(220);
-        msgData.setLayoutY(15);
+        msgData.setPrefSize(50, 20);
+        msgData.setLayoutX(180);
+        msgData.setLayoutY(10);
         msgData.getStyleClass().add("element_msgData");
         children.add(msgData);
         // 填充；信息简述 & 信息时间
@@ -75,8 +75,8 @@ public class ElementTalk {
         // 消息提醒
         msgRemind = new Label();
         msgRemind.setPrefSize(15, 15);
-        msgRemind.setLayoutX(60);
-        msgRemind.setLayoutY(5);
+        msgRemind.setLayoutX(50);
+        msgRemind.setLayoutY(10);
         msgRemind.setUserData(new RemindCount());
         msgRemind.setText("");
         msgRemind.setVisible(false);
@@ -87,7 +87,7 @@ public class ElementTalk {
         delete = new Button();
         delete.setVisible(false);
         delete.setPrefSize(4, 4);
-        delete.setLayoutY(26);
+        delete.setLayoutY(20);
         delete.setLayoutX(-8);
         delete.getStyleClass().add("element_delete");
         children.add(delete);
