@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
+<?import javafx.geometry.Insets?>
 <Pane id="chat" prefHeight="730" prefWidth="980" stylesheets="@css/chat.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <!-- 控制栏 -->
@@ -30,6 +30,25 @@
 
         <!-- 组；group_bar_chat -->
         <Pane id="group_bar_chat" layoutX="64.0" layoutY="1" prefHeight="730" prefWidth="927.0" style="-fx-background-color:pink;" visible="true">
+            <children>
+                <!-- 搜索栏 -->
+                <Pane styleClass="search" prefHeight="80" prefWidth="314">
+                    <children>
+                        <TextField styleClass="searchInput" layoutX="20" layoutY="30" prefHeight="30" prefWidth="240" promptText="搜索">
+                            <padding>
+                                <Insets left="30"/>
+                            </padding>
+                        </TextField>
+                        <Label styleClass="searchAdd" layoutX="270" layoutY="30" prefHeight="30" prefWidth="30"/>
+                    </children>
+                </Pane>
+                <!-- 会话栏 -->
+                <Pane id="talk" layoutY="80" prefHeight="738" prefWidth="314">
+                    <children>
+                        <ListView id="talkList" prefHeight="738" prefWidth="314" styleClass="talkListStyle"/>
+                    </children>
+                </Pane>
+            </children>
         </Pane>
 
         <!-- 组；group_bar_friend -->
