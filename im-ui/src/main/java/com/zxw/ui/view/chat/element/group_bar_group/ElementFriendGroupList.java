@@ -1,4 +1,4 @@
-package com.zxw.ui.view.chat.element.group_bar_friend;
+package com.zxw.ui.view.chat.element.group_bar_group;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -21,7 +21,7 @@ public class ElementFriendGroupList {
     public ElementFriendGroupList() {
         pane = new Pane();
         pane.setId("friendGroupList");
-        pane.setPrefWidth(314);
+        pane.setPrefWidth(250);
         pane.setPrefHeight(0);// 自动计算；groupListView.setPrefHeight(70 * items.size() + 10);
         pane.setLayoutX(-10);
         pane.getStyleClass().add("elementFriendGroupList");
@@ -29,7 +29,7 @@ public class ElementFriendGroupList {
 
         groupListView = new ListView<>();
         groupListView.setId("groupListView");
-        groupListView.setPrefWidth(314);
+        groupListView.setPrefWidth(250);
         groupListView.setPrefHeight(0); // 自动计算；groupListView.setPrefHeight(70 * items.size() + 10);
         groupListView.setLayoutX(-10);
         groupListView.getStyleClass().add("elementFriendGroupList_listView");

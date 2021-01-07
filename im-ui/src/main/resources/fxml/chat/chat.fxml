@@ -38,8 +38,8 @@
 
             <!-- 组；group_bar_chat -->
             <AnchorPane id="group_bar_chat" layoutX="65" layoutY="0" prefHeight="730" prefWidth="915"
-                        style="-fx-background-color:pink;" visible="true" maxHeight="-Infinity"
-                        maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                        visible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                        minWidth="-Infinity">
                 <children>
 
                     <!--左部-->
@@ -142,8 +142,7 @@
             </AnchorPane>
 
             <!-- 组；group_bar_friend -->
-            <Pane id="group_bar_friend" layoutX="65" layoutY="0" prefHeight="730" prefWidth="915"
-                  style="-fx-background-color:yellow;" visible="false">
+            <Pane id="group_bar_friend" layoutX="65" layoutY="0" prefHeight="730" prefWidth="915" visible="false">
                 <children>
                     <!--左部-->
                     <Pane id="left">
@@ -190,24 +189,25 @@
                                         </children>
                                     </AnchorPane>
                                     <!--对话名称(昵称、群名称)-->
-                                    <Pane id="info_pane" layoutY="30" prefWidth="665" prefHeight="30">
+                                    <Pane id="content_pane" layoutY="30" prefWidth="665" prefHeight="30">
                                         <children>
-                                            <!--                                <Label id="info_more" layoutX="800" prefWidth="43" prefHeight="43"/>-->
-                                            <Label id="info_name" layoutX="40" layoutY="-8" prefWidth="400"
+                                            <Label id="content_name" layoutX="40" layoutY="-8" prefWidth="400"
                                                    prefHeight="40"
-                                                   text="赵小吴"/>
+                                                   text="加载..."/>
                                         </children>
                                     </Pane>
+
                                 </children>
                             </Pane>
 
-                            <!--                            &lt;!&ndash; 消息栏 &ndash;&gt;-->
-                            <!--                            <Pane id="information" layoutY="60" prefWidth="665" prefHeight="530">-->
-                            <!--                                <children>-->
-                            <!--                                    <Pane id="info_pane_box" prefHeight="530" prefWidth="665"-->
-                            <!--                                          style="-fx-background-color:transparent;-fx-border-width:0;"/>-->
-                            <!--                                </children>-->
-                            <!--                            </Pane>-->
+                            <!-- 内容栏；新的朋友、公众号、群组、好友，明细信息(发送消息按钮) -->
+                            <Pane id="content" layoutY="60" prefWidth="665" prefHeight="530">
+                                <children>
+                                    <Pane id="content_pane_box" prefWidth="665"
+                                          prefHeight="530"
+                                          style="-fx-background-color:transparent;-fx-border-width:0;"/>
+                                </children>
+                            </Pane>
 
                         </children>
                     </AnchorPane>
@@ -216,7 +216,7 @@
 
             <!-- 组；group_bar_group -->
             <Pane id="group_bar_group" layoutX="65" layoutY="0" prefHeight="730" prefWidth="915"
-                  style="-fx-background-color:black;" visible="false">
+                  visible="false">
                 <children>
                     <!--左部-->
                     <Pane id="left">
@@ -254,32 +254,32 @@
                                     <AnchorPane id="operation" prefWidth="665" prefHeight="30" maxHeight="-Infinity"
                                                 maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                                         <children>
-                                            <Button id="group_bar_chat_min" styleClass="min" prefWidth="30"
+                                            <Button id="group_bar_group_min" styleClass="min" prefWidth="30"
                                                     prefHeight="30"
                                                     AnchorPane.rightAnchor="35"/>
-                                            <Button id="group_bar_chat_close" styleClass="close" prefWidth="30"
+                                            <Button id="group_bar_group_close" styleClass="close" prefWidth="30"
                                                     prefHeight="30" AnchorPane.rightAnchor="5"/>
                                         </children>
                                     </AnchorPane>
                                     <!--对话名称(昵称、群名称)-->
-                                    <Pane id="info_pane" layoutY="30" prefWidth="665" prefHeight="30">
+                                    <Pane id="group_content_pane" layoutY="30" prefWidth="665" prefHeight="30">
                                         <children>
-                                            <!--                                <Label id="info_more" layoutX="800" prefWidth="43" prefHeight="43"/>-->
-                                            <Label id="info_name" layoutX="40" layoutY="-8" prefWidth="400"
+                                            <Label id="group_content_name" layoutX="40" layoutY="-8" prefWidth="400"
                                                    prefHeight="40"
-                                                   text="赵小吴"/>
+                                                   text="加载..."/>
                                         </children>
                                     </Pane>
                                 </children>
                             </Pane>
 
-                            <!--                            &lt;!&ndash; 消息栏 &ndash;&gt;-->
-                            <!--                            <Pane id="information" layoutY="60" prefWidth="665" prefHeight="530">-->
-                            <!--                                <children>-->
-                            <!--                                    <Pane id="info_pane_box" prefHeight="530" prefWidth="665"-->
-                            <!--                                          style="-fx-background-color:transparent;-fx-border-width:0;"/>-->
-                            <!--                                </children>-->
-                            <!--                            </Pane>-->
+                            <!-- 内容栏；新的朋友、公众号、群组、好友，明细信息(发送消息按钮) -->
+                            <Pane id="content" layoutY="60" prefWidth="665" prefHeight="670">
+                                <children>
+                                    <Pane id="group_content_pane_box" prefWidth="665"
+                                          prefHeight="530"
+                                          style="-fx-background-color:transparent;-fx-border-width:0;"/>
+                                </children>
+                            </Pane>
 
                         </children>
                     </AnchorPane>

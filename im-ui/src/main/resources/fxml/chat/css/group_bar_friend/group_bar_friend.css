@@ -1,4 +1,4 @@
-/*@import "chat_content.css";*/
+@import "chat_content.css";
 @import "chat_friend.css";
 @import "chat_friend_group.css";
 @import "chat_friend_user.css";
@@ -6,6 +6,6 @@
 @import "chat_search.css";
 
 #group_bar_friend{
-   -fx-background-color:yellow;
+   -fx-background-color:transparent;
    -fx-border-width:0;
 }

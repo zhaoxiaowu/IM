@@ -20,7 +20,7 @@ public class ElementFriendUserList {
     public ElementFriendUserList(){
         pane = new Pane();
         pane.setId("friendUserList");
-        pane.setPrefWidth(314);
+        pane.setPrefWidth(250);
         pane.setPrefHeight(0);// 自动计算；userListView.setPrefHeight(70 * items.size() + 10);
         pane.setLayoutX(-10);
         pane.getStyleClass().add("elementFriendUserList");
@@ -28,7 +28,7 @@ public class ElementFriendUserList {
 
         userListView = new ListView<>();
         userListView.setId("userListView");
-        userListView.setPrefWidth(314);
+        userListView.setPrefWidth(250);
         userListView.setPrefHeight(0); // 自动计算；userListView.setPrefHeight(70 * items.size() + 10);
         userListView.setLayoutX(-10);
         userListView.getStyleClass().add("elementFriendUser_listView");

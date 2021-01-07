@@ -7,7 +7,8 @@ import com.zxw.ui.view.chat.data.RemindCount;
 import com.zxw.ui.view.chat.data.TalkData;
 import com.zxw.ui.view.chat.element.chat.ElementInfoBox;
 import com.zxw.ui.view.chat.element.chat.ElementTalk;
-import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendGroup;
+import com.zxw.ui.view.chat.element.group_bar_group.ElementFriendGroup;
+import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendLuckUser;
 import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendUser;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -195,7 +196,7 @@ public class ChatController extends ChatView implements IChatMethod {
     }
 
     @Override
-    public void addFriendGroup(String groupId, String groupName, String groupHead) {
+    public void addFriendGroup(boolean selected,String groupId, String groupName, String groupHead) {
         ElementFriendGroup elementFriendGroup = new ElementFriendGroup(groupId, groupName, groupHead);
         Pane pane = elementFriendGroup.pane();
         // 添加到群组列表
@@ -204,10 +205,34 @@ public class ChatController extends ChatView implements IChatMethod {
         items.add(pane);
         groupListView.setPrefHeight(80 * items.size());
         $("friendGroupList", Pane.class).setPrefHeight(80 * items.size());
+
+        // 选中
+        if (selected) {
+            groupListView.getSelectionModel().select(pane);
+        }
+
+        // 群组，内容框[初始化，未装载]，承载群组信息内容，点击按钮时候填充
+        Pane detailContent = new Pane();
+        detailContent.setPrefSize(665, 730);
+        detailContent.getStyleClass().add("friendGroupDetailContent");
+        ObservableList<Node> children = detailContent.getChildren();
+
+        Button sendMsgButton = new Button();
+        sendMsgButton.setId(groupId);
+        sendMsgButton.getStyleClass().add("friendGroupSendMsgButton");
+        sendMsgButton.setPrefSize(135, 35);
+        sendMsgButton.setLayoutX(265);
+        sendMsgButton.setLayoutY(335);
+        sendMsgButton.setText("发送消息");
+        chatEventDefine.doEventOpenFriendGroupSendMsg(sendMsgButton, groupId, groupName, groupHead);
+        children.add(sendMsgButton);
+
         // 添加监听事件
         pane.setOnMousePressed(event -> {
-            clearViewListSelectedAll($("friendList", ListView.class), $("userListView", ListView.class));
+            clearViewListSelectedAll($("groupList", ListView.class));
+            chatView.setGroupContentPaneBox(groupId, groupName, detailContent);
         });
+        chatView.setGroupContentPaneBox(groupId, groupName, detailContent);
     }
 
     @Override
@@ -224,9 +249,40 @@ public class ChatController extends ChatView implements IChatMethod {
         if (selected) {
             userListView.getSelectionModel().select(pane);
         }
+        // 好友，内容框[初始化，未装载]，承载好友信息内容，点击按钮时候填充
+        Pane detailContent = new Pane();
+        detailContent.setPrefSize(665, 730);
+        detailContent.getStyleClass().add("friendUserDetailContent");
+        ObservableList<Node> children = detailContent.getChildren();
+
+        Button sendMsgButton = new Button();
+        sendMsgButton.setId(userFriendId);
+        sendMsgButton.getStyleClass().add("friendUserSendMsgButton");
+        sendMsgButton.setPrefSize(135, 35);
+        sendMsgButton.setLayoutX(265);
+        sendMsgButton.setLayoutY(335);
+        sendMsgButton.setText("发送消息");
+        chatEventDefine.doEventOpenFriendUserSendMsg(sendMsgButton, userFriendId, userFriendNickName, userFriendHead);
+        children.add(sendMsgButton);
         // 添加监听事件
         pane.setOnMousePressed(event -> {
-            clearViewListSelectedAll($("friendList", ListView.class), $("userListView", ListView.class));
+            clearViewListSelectedAll($("friendList", ListView.class));
+            chatView.setContentPaneBox(userFriendId, userFriendNickName, detailContent);
+        });
+        chatView.setContentPaneBox(userFriendId, userFriendNickName, detailContent);
+    }
+
+    @Override
+    public void addLuckFriend(String userId, String userNickName, String userHead, Integer status) {
+        ElementFriendLuckUser friendLuckUser = new ElementFriendLuckUser(userId, userNickName, userHead, status);
+        Pane pane = friendLuckUser.pane();
+        // 添加到好友列表
+        ListView<Pane> friendLuckListView = $("friendLuckListView", ListView.class);
+        ObservableList<Pane> items = friendLuckListView.getItems();
+        items.add(pane);
+        // 点击事件
+        friendLuckUser.statusLabel().setOnMousePressed(event -> {
+            System.out.println("添加好友");
         });
     }
 }

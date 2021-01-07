@@ -119,6 +119,10 @@ public class ChatEventDefine {
             System.out.println("最小化");
             chatView.setIconified(true);
         });
+        chatView.$("group_bar_group_min", Button.class).setOnAction(event -> {
+            System.out.println("最小化");
+            chatView.setIconified(true);
+        });
     }
 
     // 退出
@@ -129,8 +133,14 @@ public class ChatEventDefine {
             System.out.println("退出");
         });
         chatView.$("group_bar_friend_close", Button.class).setOnAction(event -> {
-            System.out.println("最小化");
-            chatView.setIconified(true);
+            chatView.close();
+            System.exit(0);
+            System.out.println("退出");
+        });
+        chatView.$("group_bar_group_close", Button.class).setOnAction(event -> {
+            chatView.close();
+            System.exit(0);
+            System.out.println("退出");
         });
     }
 
@@ -169,5 +179,31 @@ public class ChatEventDefine {
         chatMethod.addTalkMsgRight(talkBoxData.getTalkId(), msg, msgDate, true, true, false);
         //清楚内容 鼠标重新定位
         txt_input.clear();
+    }
+    
+    // 好友；开启与好友发送消息 [点击发送消息时候触发 -> 添加到对话框、选中、展示对话列表]
+    public void doEventOpenFriendUserSendMsg(Button sendMsgButton, String userFriendId, String userFriendNickName, String userFriendHead) {
+        sendMsgButton.setOnAction(event -> {
+            // 1. 添加好友到对话框
+            chatMethod.addTalkBox(0, 0, userFriendId, userFriendNickName, userFriendHead, null, null, true);
+            // 2. 切换到对话框窗口
+            switchBarChat(chatView.$("bar_chat", Button.class), chatView.$("group_bar_chat", Pane.class), true);
+            switchBarFriend(chatView.$("bar_friend", Button.class), chatView.$("group_bar_friend", Pane.class), false);
+            // 3. 事件处理；填充到对话框
+            System.out.println("事件处理；填充到对话框");
+        });
+    }
+
+    // 群组；开启与群组发送消息
+    public void doEventOpenFriendGroupSendMsg(Button sendMsgButton, String groupId, String groupName, String groupHead) {
+        sendMsgButton.setOnAction(event -> {
+            // 1. 添加好友到对话框
+            chatMethod.addTalkBox(0, 1, groupId, groupName, groupHead, null, null, true);
+            // 2. 切换到对话框窗口
+            switchBarChat(chatView.$("bar_chat", Button.class), chatView.$("group_bar_chat", Pane.class), true);
+            switchBarGroup(chatView.$("bar_group", Button.class), chatView.$("group_bar_group", Pane.class), false);
+            // 3. 事件处理；填充到对话框
+            System.out.println("事件处理；填充到对话框");
+        });
     }
 }

@@ -2,13 +2,15 @@ package com.zxw.ui.view.chat;
 
 import com.zxw.ui.view.chat.data.RemindCount;
 import com.zxw.ui.view.chat.data.TalkBoxData;
-import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendGroupList;
-import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendLuck;
-import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendTag;
-import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendUserList;
+import com.zxw.ui.view.chat.element.group_bar_friend.*;
+import com.zxw.ui.view.chat.element.group_bar_group.ElementCreateGroup;
+import com.zxw.ui.view.chat.element.group_bar_group.ElementFriendGroupList;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 
 public class ChatViewInit {
@@ -47,7 +49,56 @@ public class ChatViewInit {
 
         // 面板填充和事件
         pane.setOnMousePressed(event -> {
+            Pane friendLuckPane = element.friendLuckPane();
+            setContentPaneBox("itstack-naive-chat-ui-chat-friend-luck", "新的朋友", friendLuckPane);
             chatView.clearViewListSelectedAll(chatView.$("userListView", ListView.class));
+            ListView<Pane> listView = element.friendLuckListView();
+            listView.getItems().clear();
+            System.out.println("添加好友");
+        });
+
+        // 搜索框事件
+        TextField friendLuckSearch = element.friendLuckSearch();
+
+        // 键盘事件；搜索好友
+        friendLuckSearch.setOnKeyPressed(event -> {if (event.getCode().equals(KeyCode.ENTER)) {String text = friendLuckSearch.getText();
+            if (null == text) text = "";
+            if (text.length() > 30)text = text.substring(0, 30);
+            text = text.trim();
+            System.out.println("搜搜好友：" + text);
+            // 搜索清空元素
+            element.friendLuckListView().getItems().clear();
+            // 添加朋友
+            element.friendLuckListView().getItems().add(new ElementFriendLuckUser("1000005", "比丘卡", "05_50", 0).pane());
+            element.friendLuckListView().getItems().add(new ElementFriendLuckUser("1000006", "兰兰", "06_50", 1).pane());
+            element.friendLuckListView().getItems().add(new ElementFriendLuckUser("1000007", "Alexa", "07_50", 2).pane());}
+        });
+    }
+
+    /**
+     * 添加群组
+     */
+    private void initAddGroup() {
+        ListView<Pane> friendList = chatView.$("groupList", ListView.class);
+        ObservableList<Pane> items = friendList.getItems();
+
+        ElementFriendTag elementFriendTag = new ElementFriendTag("创建群组");
+        items.add(elementFriendTag.pane());
+
+        ElementCreateGroup element = new ElementCreateGroup();
+        Pane pane = element.pane();
+        items.add(pane);
+
+        // 面板填充和事件
+        pane.setOnMousePressed(event -> {
+
+//            Pane friendLuckPane = element.friendLuckPane();
+//            setContentPaneBox("itstack-naive-chat-ui-chat-group-luck", "新的群组", friendLuckPane);
+//            chatView.clearViewListSelectedAll(chatView.$("groupListView", ListView.class));
+//            ListView<Pane> listView = element.friendLuckListView();
+//            listView.getItems().clear();
+            chatView.clearViewListSelectedAll(chatView.$("groupListView", ListView.class));
+            System.out.println("添加群组");
         });
     }
 
@@ -66,25 +117,6 @@ public class ChatViewInit {
         items.add(pane);
     }
 
-    /**
-     * 添加群组
-     */
-    private void initAddGroup() {
-        ListView<Pane> friendList = chatView.$("groupList", ListView.class);
-        ObservableList<Pane> items = friendList.getItems();
-
-        ElementFriendTag elementFriendTag = new ElementFriendTag("创建群组");
-        items.add(elementFriendTag.pane());
-
-        ElementFriendLuck element = new ElementFriendLuck();
-        Pane pane = element.pane();
-        items.add(pane);
-
-        // 面板填充和事件
-        pane.setOnMousePressed(event -> {
-            chatView.clearViewListSelectedAll(chatView.$("groupListView", ListView.class));
-        });
-    }
     
     /**
      * 好友群组框体
@@ -101,6 +133,41 @@ public class ChatViewInit {
         items.add(pane);
     }
 
+    /**
+     * group_bar_chat：填充对话列表 & 对话框名称
+     *
+     * @param id   用户、群组等ID
+     * @param name 用户、群组等名称
+     * @param node 展现面板
+     */
+    void setContentPaneBox(String id, String name, Node node) {
+        // 填充对话列表
+        Pane content_pane_box = chatView.$("content_pane_box", Pane.class);
+        content_pane_box.setUserData(id);
+        content_pane_box.getChildren().clear();
+        content_pane_box.getChildren().add(node);
+        // 对话框名称
+        Label info_name = chatView.$("content_name", Label.class);
+        info_name.setText(name);
+    }
+
+    /**
+     * group_bar_chat：填充对话列表 & 对话框名称
+     *
+     * @param id   用户、群组等ID
+     * @param name 用户、群组等名称
+     * @param node 展现面板
+     */
+    void setGroupContentPaneBox(String id, String name, Node node) {
+        // 填充对话列表
+        Pane content_pane_box = chatView.$("group_content_pane_box", Pane.class);
+        content_pane_box.setUserData(id);
+        content_pane_box.getChildren().clear();
+        content_pane_box.getChildren().add(node);
+        // 对话框名称
+        Label info_name = chatView.$("group_content_name", Label.class);
+        info_name.setText(name);
+    }
 
     /**
      * 更新对话框列表元素位置指定并选中[在聊天消息发送时触达]

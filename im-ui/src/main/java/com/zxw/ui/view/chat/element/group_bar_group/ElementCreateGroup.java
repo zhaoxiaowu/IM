@@ -1,4 +1,4 @@
-package com.zxw.ui.view.chat.element.group_bar_friend;
+package com.zxw.ui.view.chat.element.group_bar_group;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
  * <p>
  * 组件；好友缘分 | 添加好友
  */
-public class ElementFriendLuck {
+public class ElementCreateGroup {
 
     private Pane pane;
 
@@ -26,7 +26,7 @@ public class ElementFriendLuck {
     private TextField friendLuckSearch;        // 用户搜索
     private ListView<Pane> friendLuckListView; // 用户列表[待添加好友用户]
 
-    public ElementFriendLuck() {
+    public ElementCreateGroup() {
         pane = new Pane();
         pane.setId("elementFriendLuck");
         pane.setPrefSize(250, 60);
@@ -46,32 +46,32 @@ public class ElementFriendLuck {
         name.setPrefSize(180, 40);
         name.setLayoutX(60);
         name.setLayoutY(10);
-        name.setText("新的朋友");
+        name.setText("创建群组");
         name.getStyleClass().add("elementFriendLuck_name");
         children.add(name);
 
-        // 初始化框体区域[搜索好友框、展现框]
-        friendLuckPane = new Pane();
-        friendLuckPane.setPrefSize(665, 670);
-        friendLuckPane.getStyleClass().add("friendLuckPane");
-        ObservableList<Node> friendLuckPaneChildren = friendLuckPane.getChildren();
-
-        friendLuckSearch = new TextField();
-        friendLuckSearch.setPrefSize(545,35);
-        friendLuckSearch.setLayoutX(60);
-        friendLuckSearch.setLayoutY(25);
-        friendLuckSearch.setPromptText("搜一搜");
-        friendLuckSearch.setPadding(new Insets(10));
-        friendLuckSearch.getStyleClass().add("friendLuckSearch");
-        friendLuckPaneChildren.add(friendLuckSearch);
-
-        // 用户列表框[初始化，未装载]
-        friendLuckListView = new ListView<>();
-        friendLuckListView.setId("friendLuckListView");
-        friendLuckListView.setPrefSize(665, 460);
-        friendLuckListView.setLayoutY(75);
-        friendLuckListView.getStyleClass().add("friendLuckListView");
-        friendLuckPaneChildren.add(friendLuckListView);
+//        // 初始化框体区域[搜索好友框、展现框]
+//        friendLuckPane = new Pane();
+//        friendLuckPane.setPrefSize(665, 670);
+//        friendLuckPane.getStyleClass().add("friendLuckPane");
+//        ObservableList<Node> friendLuckPaneChildren = friendLuckPane.getChildren();
+//
+//        friendLuckSearch = new TextField();
+//        friendLuckSearch.setPrefSize(545,35);
+//        friendLuckSearch.setLayoutX(60);
+//        friendLuckSearch.setLayoutY(25);
+//        friendLuckSearch.setPromptText("搜一搜");
+//        friendLuckSearch.setPadding(new Insets(10));
+//        friendLuckSearch.getStyleClass().add("friendLuckSearch");
+//        friendLuckPaneChildren.add(friendLuckSearch);
+//
+//        // 用户列表框[初始化，未装载]
+//        friendLuckListView = new ListView<>();
+//        friendLuckListView.setId("friendLuckListView");
+//        friendLuckListView.setPrefSize(665, 460);
+//        friendLuckListView.setLayoutY(75);
+//        friendLuckListView.getStyleClass().add("friendLuckListView");
+//        friendLuckPaneChildren.add(friendLuckListView);
 
     }
 

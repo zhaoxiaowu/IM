@@ -78,7 +78,7 @@ public interface IChatMethod {
      * @param groupName 群组名称
      * @param groupHead 群组头像
      */
-    void addFriendGroup(String groupId, String groupName, String groupHead);
+    void addFriendGroup(boolean selected, String groupId, String groupName, String groupHead);
 
     /**
      * 好友列表添加‘用户’
@@ -89,4 +89,14 @@ public interface IChatMethod {
      * @param userHead     好友头像
      */
     void addFriendUser(boolean selected, String userId, String userNickName, String userHead);
+
+    /**
+     * 缘分好友 | 默认添加10个好友
+     *
+     * @param userId       好友ID
+     * @param userNickName 好友昵称
+     * @param userHead     好友头像
+     * @param status       状态；0添加、1允许、2已添加
+     */
+    void addLuckFriend(String userId, String userNickName, String userHead, Integer status);
 }

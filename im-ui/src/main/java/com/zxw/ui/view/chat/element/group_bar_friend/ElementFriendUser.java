@@ -22,22 +22,22 @@ public class ElementFriendUser {
         pane = new Pane();
         pane.setId(userId);
         pane.setPrefWidth(250);
-        pane.setPrefHeight(70);
+        pane.setPrefHeight(60);
         pane.getStyleClass().add("elementFriendUser");
         ObservableList<Node> children = pane.getChildren();
         // 头像区域
         headLabel = new Label();
-        headLabel.setPrefSize(50, 50);
-        headLabel.setLayoutX(15);
+        headLabel.setPrefSize(40, 40);
+        headLabel.setLayoutX(10);
         headLabel.setLayoutY(10);
         headLabel.getStyleClass().add("elementFriendUser_head");
         headLabel.setStyle(String.format("-fx-background-image: url('/fxml/chat/img/head/%s.png')", userHead));
         children.add(headLabel);
         // 名称区域
         nameLabel = new Label();
-        nameLabel.setPrefSize(200, 40);
-        nameLabel.setLayoutX(80);
-        nameLabel.setLayoutY(15);
+        nameLabel.setPrefSize(180, 40);
+        nameLabel.setLayoutX(60);
+        nameLabel.setLayoutY(10);
         nameLabel.setText(userNickName);
         nameLabel.getStyleClass().add("elementFriendUser_name");
         children.add(nameLabel);
