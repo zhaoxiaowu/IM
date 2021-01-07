@@ -1,4 +1,4 @@
-package com.zxw.ui.view.chat.element.group_bar_chat;
+package com.zxw.ui.view.chat.element.chat;
 
 import com.zxw.ui.util.AutoSizeTool;
 import javafx.collections.ObservableList;

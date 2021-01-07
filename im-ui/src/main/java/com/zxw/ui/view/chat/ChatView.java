@@ -1,14 +1,11 @@
 package com.zxw.ui.view.chat;
 
+import com.zxw.ui.util.DragUtil;
 import com.zxw.ui.view.UIObject;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
 
@@ -37,11 +34,12 @@ public abstract class ChatView extends UIObject {
         scene.setFill(Color.TRANSPARENT);
         setScene(scene);
         initStyle(StageStyle.TRANSPARENT);
-        setResizable(false);
+        setResizable(true);
         this.getIcons().add(new Image("/fxml/common/img/logo.png"));
         obtain();
         initView();
         initEventDefine();
+//        DragUtil.addDragFunc(this, root);
     }
     private void obtain() {
         // 可以预加载

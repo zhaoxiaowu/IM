@@ -1,4 +1,4 @@
-package com.zxw.ui.view.chat.element.group_bar_chat;
+package com.zxw.ui.view.chat.element.chat;
 
 import com.zxw.ui.util.DateUtil;
 import com.zxw.ui.util.Ids;

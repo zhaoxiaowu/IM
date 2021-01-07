@@ -2,6 +2,11 @@ package com.zxw.ui.view.chat;
 
 import com.zxw.ui.view.chat.data.RemindCount;
 import com.zxw.ui.view.chat.data.TalkBoxData;
+import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendGroupList;
+import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendLuck;
+import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendTag;
+import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendUserList;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
@@ -14,7 +19,88 @@ public class ChatViewInit {
     public ChatViewInit(ChatView chatView, IChatEvent chatEvent) {
         this.chatView = chatView;
         this.chatEvent = chatEvent;
+
+        //1. 好友列表添加工具方法‘新的朋友’
+        initAddFriendLuck();
+        //2. 好友框体
+        addFriendUserList();
+
+        //3. 好友列表添加‘公众号’
+        initAddGroup();
+        //4. 好友群组框体
+        addFriendGroupList();
     }
+
+    /**
+     * 好友列表添加工具方法‘新的朋友’
+     */
+    private void initAddFriendLuck() {
+        ListView<Pane> friendList = chatView.$("friendList", ListView.class);
+        ObservableList<Pane> items = friendList.getItems();
+
+        ElementFriendTag elementFriendTag = new ElementFriendTag("新的朋友");
+        items.add(elementFriendTag.pane());
+
+        ElementFriendLuck element = new ElementFriendLuck();
+        Pane pane = element.pane();
+        items.add(pane);
+
+        // 面板填充和事件
+        pane.setOnMousePressed(event -> {
+            chatView.clearViewListSelectedAll(chatView.$("userListView", ListView.class));
+        });
+    }
+
+    /**
+     * 好友框体
+     */
+    private void addFriendUserList() {
+        ListView<Pane> friendList = chatView.$("friendList", ListView.class);
+        ObservableList<Pane> items = friendList.getItems();
+
+        ElementFriendTag elementFriendTag = new ElementFriendTag("好友");
+        items.add(elementFriendTag.pane());
+
+        ElementFriendUserList element = new ElementFriendUserList();
+        Pane pane = element.pane();
+        items.add(pane);
+    }
+
+    /**
+     * 添加群组
+     */
+    private void initAddGroup() {
+        ListView<Pane> friendList = chatView.$("groupList", ListView.class);
+        ObservableList<Pane> items = friendList.getItems();
+
+        ElementFriendTag elementFriendTag = new ElementFriendTag("创建群组");
+        items.add(elementFriendTag.pane());
+
+        ElementFriendLuck element = new ElementFriendLuck();
+        Pane pane = element.pane();
+        items.add(pane);
+
+        // 面板填充和事件
+        pane.setOnMousePressed(event -> {
+            chatView.clearViewListSelectedAll(chatView.$("groupListView", ListView.class));
+        });
+    }
+    
+    /**
+     * 好友群组框体
+     */
+    private void addFriendGroupList() {
+        ListView<Pane> friendList = chatView.$("groupList", ListView.class);
+        ObservableList<Pane> items = friendList.getItems();
+
+        ElementFriendTag elementFriendTag = new ElementFriendTag("群聊");
+        items.add(elementFriendTag.pane());
+
+        ElementFriendGroupList element = new ElementFriendGroupList();
+        Pane pane = element.pane();
+        items.add(pane);
+    }
+
 
     /**
      * 更新对话框列表元素位置指定并选中[在聊天消息发送时触达]

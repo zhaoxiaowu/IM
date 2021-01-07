@@ -4,6 +4,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
  */
 public abstract class UIObject extends Stage {
 
-    protected Parent root;
+    protected VBox root;
     private double xOffset;
     private double yOffset;
 
@@ -36,7 +37,7 @@ public abstract class UIObject extends Stage {
             root.setCursor(Cursor.CLOSED_HAND);
         });
         root.setOnMouseDragged(event -> {
-            System.out.println("移动窗体");
+//            System.out.println("移动窗体");
             setX(event.getScreenX() + xOffset);
             setY(event.getScreenY() + yOffset);
         });

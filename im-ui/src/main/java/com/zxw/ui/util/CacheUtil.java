@@ -1,6 +1,6 @@
 package com.zxw.ui.util;
 
-import com.zxw.ui.view.chat.element.group_bar_chat.ElementTalk;
+import com.zxw.ui.view.chat.element.chat.ElementTalk;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

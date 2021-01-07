@@ -1,5 +1,6 @@
 @import "chat_bar.css";
 @import "group_bar_chat/group_bar_chat.css";
+@import "group_bar_friend/group_bar_friend.css";
 
 #chat {
     -fx-background-radius: 4px;

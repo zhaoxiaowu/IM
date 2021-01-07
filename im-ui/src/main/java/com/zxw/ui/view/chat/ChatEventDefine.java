@@ -112,6 +112,11 @@ public class ChatEventDefine {
     // 最小化
     private void min() {
         chatView.$("group_bar_chat_min", Button.class).setOnAction(event -> {
+            System.out.println("最小化");
+            chatView.setIconified(true);
+        });
+        chatView.$("group_bar_friend_min", Button.class).setOnAction(event -> {
+            System.out.println("最小化");
             chatView.setIconified(true);
         });
     }
@@ -122,6 +127,10 @@ public class ChatEventDefine {
             chatView.close();
             System.exit(0);
             System.out.println("退出");
+        });
+        chatView.$("group_bar_friend_close", Button.class).setOnAction(event -> {
+            System.out.println("最小化");
+            chatView.setIconified(true);
         });
     }
 
