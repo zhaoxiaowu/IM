@@ -88,7 +88,7 @@
                         <!-- 消息栏 -->
                         <Pane id="information" layoutY="60" prefWidth="665" prefHeight="530">
                             <children>
-                                <Pane id="info_pane_box" prefHeight="530"
+                                <Pane id="info_pane_box" prefHeight="530" prefWidth="665"
                                       style="-fx-background-color:transparent;-fx-border-width:0;"/>
                             </children>
                         </Pane>

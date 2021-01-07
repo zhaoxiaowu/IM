@@ -1,6 +1,9 @@
 package com.zxw.ui.util;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class AutoSizeTool {
 
     public static double getWidth(String msg) {
@@ -24,6 +27,15 @@ public class AutoSizeTool {
     }
 
     public static double getHeight(String msg) {
+        //判断包含多少换行
+        System.out.println("msg" + msg);
+        Pattern p = Pattern.compile("\r|\n");
+        int countLineFeed = 0;
+        Matcher m = p.matcher(msg);
+        while (m.find()) {
+            countLineFeed++;
+        }
+
         int len = msg.length();
         double width = 0;
         for (int i = 0; i < len; i++) {
@@ -43,7 +55,7 @@ public class AutoSizeTool {
             line = line + 1;
         }
 
-        double autoHeight = line * 24 + 10;
+        double autoHeight = (line + countLineFeed) * 24 + 10;
 
         return autoHeight < 30 ? 30 : autoHeight;
 
