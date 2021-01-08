@@ -1,5 +1,7 @@
 package com.zxw.ui.view.login;
 
+import com.zxw.ui.view.chat.IChatMethod;
+
 /**
  * 窗口控制器   管理视图  事件（第三方事件  窗口事件） 窗口方法
  */
@@ -7,8 +9,9 @@ public class LoginController extends LoginView implements ILoginMethod {
 
     private LoginEventDefine loginEventDefine;
 
-    public LoginController(ILoginEvent ILoginEvent) {
-        super(ILoginEvent);
+
+    public LoginController(ILoginEvent ILoginEven) {
+        super(ILoginEven);
     }
 
     @Override

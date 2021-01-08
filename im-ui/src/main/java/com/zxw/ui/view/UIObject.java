@@ -4,7 +4,6 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -13,7 +12,7 @@ import javafx.stage.Stage;
  */
 public abstract class UIObject extends Stage {
 
-    protected VBox root;
+    protected Parent root;
     private double xOffset;
     private double yOffset;
 
