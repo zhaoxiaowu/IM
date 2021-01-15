@@ -201,7 +201,7 @@
                             </Pane>
 
                             <!-- 内容栏；新的朋友、公众号、群组、好友，明细信息(发送消息按钮) -->
-                            <Pane id="content" layoutY="60" prefWidth="665" prefHeight="530">
+                            <Pane id="content" layoutY="60" prefWidth="665" prefHeight="670">
                                 <children>
                                     <Pane id="content_pane_box" prefWidth="665"
                                           prefHeight="530"
@@ -278,6 +278,27 @@
                                     <Pane id="group_content_pane_box" prefWidth="665"
                                           prefHeight="530"
                                           style="-fx-background-color:transparent;-fx-border-width:0;"/>
+                                </children>
+                            </Pane>
+
+                            <!-- 会话栏 -->
+                            <Pane id="create_group" visible="false" layoutY="60" prefHeight="670" prefWidth="665"
+                                  style="-fx-background-color:#F5F5F5;-fx-border-width:0;">
+                                <children>
+                                    <Label id="select_lable" layoutX="20"
+                                           prefWidth="322" prefHeight="30" text="好友列表" styleClass="element_friend_tag"/>
+                                    <ListView id="create_group_list" layoutX="20" layoutY="30" prefHeight="500" prefWidth="300"
+                                              styleClass="talkListStyle"/>
+
+                                    <Label id="selected_lable" layoutX="342"
+                                           prefWidth="332" prefHeight="30" text="群成员" styleClass="element_friend_tag"/>
+                                    <ListView id="selected_group_list" layoutX="342" layoutY="30" prefHeight="500"
+                                              prefWidth="300"
+                                              styleClass="talkListStyle"/>
+
+                                    <Label id="touch_send" layoutX="500" layoutY="550"
+                                           prefWidth="80" prefHeight="35" text="创建群聊"/>
+
                                 </children>
                             </Pane>
 

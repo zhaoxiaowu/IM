@@ -13,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 
+import java.util.Iterator;
+
 public class ChatViewInit {
 
     private ChatView chatView;
@@ -89,12 +91,31 @@ public class ChatViewInit {
         Pane pane = element.pane();
         items.add(pane);
 
+
         // 面板填充和事件
         pane.setOnMousePressed(event -> {
 
-//            Pane friendLuckPane = element.friendLuckPane();
-//            setContentPaneBox("itstack-naive-chat-ui-chat-group-luck", "新的群组", friendLuckPane);
-//            chatView.clearViewListSelectedAll(chatView.$("groupListView", ListView.class));
+            // 对话框名称
+            Label info_name = chatView.$("group_content_name", Label.class);
+            info_name.setText("新的群组");
+            chatView.clearViewListSelectedAll(chatView.$("groupListView", ListView.class));
+            Pane createGroup = chatView.$("create_group", Pane.class);
+            createGroup.setVisible(true);
+            
+            
+            ListView<Node> selectList = chatView.$("create_group_list", ListView.class);
+            ObservableList<Node> selectItems = selectList.getItems();
+            
+            ListView<Node> selectedList = chatView.$("selected_group_list", ListView.class);
+            ObservableList<Node> selectedItems = selectedList.getItems();
+            Iterator<Node> iterator = selectedItems.iterator();
+            while (iterator.hasNext()){
+                Node node = iterator.next();
+                selectItems.add(node);
+                iterator.remove();
+            }
+
+
 //            ListView<Pane> listView = element.friendLuckListView();
 //            listView.getItems().clear();
             chatView.clearViewListSelectedAll(chatView.$("groupListView", ListView.class));
@@ -143,7 +164,6 @@ public class ChatViewInit {
     void setContentPaneBox(String id, String name, Node node) {
         // 填充对话列表
         Pane content_pane_box = chatView.$("content_pane_box", Pane.class);
-        content_pane_box.setUserData(id);
         content_pane_box.getChildren().clear();
         content_pane_box.getChildren().add(node);
         // 对话框名称
@@ -151,8 +171,26 @@ public class ChatViewInit {
         info_name.setText(name);
     }
 
+//    /**
+//     * group_bar_group 创建群组面板
+//     *
+//     * @param id   用户、群组等ID
+//     * @param name 用户、群组等名称
+//     * @param node 展现面板
+//     */
+//    void setCreateGroupPaneBox(String id, String name, Node node) {
+//        // 填充对话列表
+//        Pane content_pane_box = chatView.$("content_pane_box", Pane.class);
+//        content_pane_box.setUserData(id);
+//        content_pane_box.getChildren().clear();
+//        content_pane_box.getChildren().add(node);
+//        // 对话框名称
+//        Label info_name = chatView.$("content_name", Label.class);
+//        info_name.setText(name);
+//    }
+
     /**
-     * group_bar_chat：填充对话列表 & 对话框名称
+     * group_bar_group：填充对话列表 & 对话框名称
      *
      * @param id   用户、群组等ID
      * @param name 用户、群组等名称
@@ -168,6 +206,8 @@ public class ChatViewInit {
         Label info_name = chatView.$("group_content_name", Label.class);
         info_name.setText(name);
     }
+
+
 
     /**
      * 更新对话框列表元素位置指定并选中[在聊天消息发送时触达]

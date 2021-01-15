@@ -10,6 +10,7 @@ import com.zxw.ui.view.chat.element.chat.ElementTalk;
 import com.zxw.ui.view.chat.element.group_bar_group.ElementFriendGroup;
 import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendLuckUser;
 import com.zxw.ui.view.chat.element.group_bar_friend.ElementFriendUser;
+import com.zxw.ui.view.chat.element.group_bar_group.ElementFriendGroupUser;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -17,6 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 
+import org.apache.commons.lang.SerializationUtils;
+
+import java.io.Serializable;
 import java.util.Date;
 
 public class ChatController extends ChatView implements IChatMethod {
@@ -36,7 +40,7 @@ public class ChatController extends ChatView implements IChatMethod {
 
     @Override
     public void initEventDefine() {
-        chatEventDefine = new ChatEventDefine(this,this);
+        chatEventDefine = new ChatEventDefine(this, chatEvent, this);
     }
 
     @Override
@@ -138,24 +142,22 @@ public class ChatController extends ChatView implements IChatMethod {
     }
 
     @Override
-    public void addTalkMsgUserLeft(String talkId, String msg, Date msgDate, Boolean idxFirst, Boolean selected, Boolean isRemind) {
+    public void addTalkMsgUserLeft(String talkId, String msg, Integer msgType, Date msgDate, Boolean idxFirst, Boolean selected, Boolean isRemind) {
         ElementTalk talkElement = CacheUtil.talkMap.get(talkId);
         ListView<Pane> listView = talkElement.infoBoxList();
         TalkData talkUserData = (TalkData) listView.getUserData();
-        Pane left = new ElementInfoBox().left(talkUserData.getTalkName(), talkUserData.getTalkHead(), msg);
+        Pane left = new ElementInfoBox().left(talkUserData.getTalkName(), talkUserData.getTalkHead(), msg, msgType);
         // 消息填充
         listView.getItems().add(left);
         // 滚动条
         listView.scrollTo(left);
-        talkElement.fillMsgSketch(msg, msgDate);
+        talkElement.fillMsgSketch(0 == msgType ? msg : "[表情]", msgDate);
         // 设置位置&选中
         chatView.updateTalkListIdxAndSelected(0, talkElement.pane(), talkElement.msgRemind(), idxFirst, selected, isRemind);
-        // 填充对话框聊天窗口
-        fillInfoBox(talkElement, talkUserData.getTalkName());
     }
 
     @Override
-    public void addTalkMsgGroupLeft(String talkId, String userId, String userNickName, String userHead, String msg, Date msgDate, Boolean idxFirst, Boolean selected, Boolean isRemind) {
+    public void addTalkMsgGroupLeft(String talkId, String userId, String userNickName, String userHead, String msg, Integer msgType, Date msgDate, Boolean idxFirst, Boolean selected, Boolean isRemind) {
         // 自己的消息抛弃
         if (super.userId.equals(userId)) return;
         ElementTalk talkElement = CacheUtil.talkMap.get(talkId);
@@ -165,38 +167,36 @@ public class ChatController extends ChatView implements IChatMethod {
             addTalkBox(0, 1, talkId, groupsData.getGroupName(), groupsData.getGroupHead(), userNickName + "：" + msg, msgDate, false);
             talkElement = CacheUtil.talkMap.get(talkId);
             // 事件通知(开启与群组发送消息)
-            System.out.println("事件通知(开启与群组发送消息)");
+            chatEvent.doEventAddTalkGroup(super.userId, talkId);
         }
         ListView<Pane> listView = talkElement.infoBoxList();
-        TalkData talkData = (TalkData) listView.getUserData();
-        Pane left = new ElementInfoBox().left(userNickName, userHead, msg);
+        Pane left = new ElementInfoBox().left(userNickName, userHead, msg, msgType);
         // 消息填充
         listView.getItems().add(left);
         // 滚动条
         listView.scrollTo(left);
-        talkElement.fillMsgSketch(userNickName + "：" + msg, msgDate);
+        talkElement.fillMsgSketch(0 == msgType ? userNickName + "：" + msg : userNickName + "：[表情]", msgDate);
         // 设置位置&选中
         chatView.updateTalkListIdxAndSelected(1, talkElement.pane(), talkElement.msgRemind(), idxFirst, selected, isRemind);
-        // 填充对话框聊天窗口
-        fillInfoBox(talkElement, talkData.getTalkName());
     }
 
+
     @Override
-    public void addTalkMsgRight(String talkId, String msg, Date msgData, Boolean idxFirst, Boolean selected, Boolean isRemind) {
+    public void addTalkMsgRight(String talkId, String msg, Integer msgType, Date msgData, Boolean idxFirst, Boolean selected, Boolean isRemind) {
         ElementTalk talkElement = CacheUtil.talkMap.get(talkId);
         ListView<Pane> listView = talkElement.infoBoxList();
-        Pane right = new ElementInfoBox().right(userNickName, userHead, msg);
+        Pane right = new ElementInfoBox().right(userNickName, userHead, msg, msgType);
         // 消息填充
         listView.getItems().add(right);
         // 滚动条
         listView.scrollTo(right);
-        talkElement.fillMsgSketch(msg, msgData);
+        talkElement.fillMsgSketch(0 == msgType ? msg : "[表情]", msgData);
         // 设置位置&选中
         chatView.updateTalkListIdxAndSelected(0, talkElement.pane(), talkElement.msgRemind(), idxFirst, selected, isRemind);
     }
 
     @Override
-    public void addFriendGroup(boolean selected,String groupId, String groupName, String groupHead) {
+    public void addFriendGroup(boolean selected, String groupId, String groupName, String groupHead) {
         ElementFriendGroup elementFriendGroup = new ElementFriendGroup(groupId, groupName, groupHead);
         Pane pane = elementFriendGroup.pane();
         // 添加到群组列表
@@ -229,6 +229,8 @@ public class ChatController extends ChatView implements IChatMethod {
 
         // 添加监听事件
         pane.setOnMousePressed(event -> {
+            Pane createGroup = $("create_group", Pane.class);
+            createGroup.setVisible(false);
             clearViewListSelectedAll($("groupList", ListView.class));
             chatView.setGroupContentPaneBox(groupId, groupName, detailContent);
         });
@@ -245,6 +247,11 @@ public class ChatController extends ChatView implements IChatMethod {
         items.add(pane);
         userListView.setPrefHeight(80 * items.size());
         $("friendUserList", Pane.class).setPrefHeight(80 * items.size());
+
+        //添加到群聊列表
+        addGroupFriend(userFriendId, userFriendNickName, userFriendHead);
+
+
         // 选中
         if (selected) {
             userListView.getSelectionModel().select(pane);
@@ -274,15 +281,69 @@ public class ChatController extends ChatView implements IChatMethod {
 
     @Override
     public void addLuckFriend(String userId, String userNickName, String userHead, Integer status) {
-        ElementFriendLuckUser friendLuckUser = new ElementFriendLuckUser(userId, userNickName, userHead, status);
-        Pane pane = friendLuckUser.pane();
         // 添加到好友列表
         ListView<Pane> friendLuckListView = $("friendLuckListView", ListView.class);
-        ObservableList<Pane> items = friendLuckListView.getItems();
-        items.add(pane);
-        // 点击事件
-        friendLuckUser.statusLabel().setOnMousePressed(event -> {
-            System.out.println("添加好友");
-        });
+        System.out.println(friendLuckListView.getEditingIndex());
+        friendLuckListView.getItems().add(new ElementFriendLuckUser(userId, userNickName, userHead, status).pane());
+//        // 点击事件
+//        friendLuckUser.statusLabel().setOnMousePressed(event -> {
+//            System.out.println("添加好友");
+//        });
     }
+
+    /**
+     * 添加群组成员    
+     * @param userId
+     * @param userNickName
+     * @param userHead
+     */
+    public void addGroupFriend(String userId, String userNickName, String userHead) {
+        ElementFriendGroupUser groupFriend = new ElementFriendGroupUser(userId, userNickName, userHead);
+        Pane pane = groupFriend.pane();
+
+
+//        ElementCreateGroup element = new ElementCreateGroup();
+//
+//        Pane friendLuckPane = element.friendLuckPane();
+//        chatView.setContentPaneBox("itstack-naive-chat-ui-chat-group-friend-luck", "新的群组", friendLuckPane);
+//        // 搜索清空元素
+//        element.friendLuckListView().getItems().clear();
+//        // 添加朋友
+//        element.friendLuckListView().getItems().add(new ElementFriendGroupUser("1000005", "比丘卡", "05_50").pane());
+
+
+        // 添加到好友列表
+        ListView<Pane> selectList = $("create_group_list", ListView.class);
+        ObservableList<Pane> items = selectList.getItems();
+        items.add(pane);
+
+        ListView<Node> selectedList = $("selected_group_list", ListView.class);
+        ObservableList<Node> selectedItems = selectedList.getItems();
+
+        pane.setOnMousePressed(event -> {
+            if(items.contains(pane)){
+                selectedItems.add(pane);
+                items.remove(pane);
+            }else {
+                items.add(pane);
+                selectedItems.remove(pane);
+            }
+
+        });
+//        // 点击事件
+//        groupFriend.statusLabel().setOnMousePressed(event -> {
+//            System.out.println("添加好友");
+//        });
+    }
+
+    @Override
+    public double getToolFaceX() {
+        return x() + width() - 665;
+    }
+
+    @Override
+    public double getToolFaceY() {
+        return y() + height() - 310;
+    }
+
 }

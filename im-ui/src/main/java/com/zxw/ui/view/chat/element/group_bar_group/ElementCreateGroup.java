@@ -1,6 +1,7 @@
 package com.zxw.ui.view.chat.element.group_bar_group;
 
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -20,15 +21,19 @@ public class ElementCreateGroup {
     private Pane pane;
 
     private Label head;  // 头像
+
     private Label name;  // 名称
 
-    private Pane friendLuckPane;               // 用户面板
-    private TextField friendLuckSearch;        // 用户搜索
+    private Pane friendLuckPane;
+ // 用户面板
+    private TextField friendLuckSearch;
+
+
     private ListView<Pane> friendLuckListView; // 用户列表[待添加好友用户]
 
     public ElementCreateGroup() {
         pane = new Pane();
-        pane.setId("elementFriendLuck");
+        pane.setId("elementGroupFriendLuck");
         pane.setPrefSize(250, 60);
         pane.getStyleClass().add("elementFriendLuck");
         ObservableList<Node> children = pane.getChildren();
@@ -49,29 +54,6 @@ public class ElementCreateGroup {
         name.setText("创建群组");
         name.getStyleClass().add("elementFriendLuck_name");
         children.add(name);
-
-//        // 初始化框体区域[搜索好友框、展现框]
-//        friendLuckPane = new Pane();
-//        friendLuckPane.setPrefSize(665, 670);
-//        friendLuckPane.getStyleClass().add("friendLuckPane");
-//        ObservableList<Node> friendLuckPaneChildren = friendLuckPane.getChildren();
-//
-//        friendLuckSearch = new TextField();
-//        friendLuckSearch.setPrefSize(545,35);
-//        friendLuckSearch.setLayoutX(60);
-//        friendLuckSearch.setLayoutY(25);
-//        friendLuckSearch.setPromptText("搜一搜");
-//        friendLuckSearch.setPadding(new Insets(10));
-//        friendLuckSearch.getStyleClass().add("friendLuckSearch");
-//        friendLuckPaneChildren.add(friendLuckSearch);
-//
-//        // 用户列表框[初始化，未装载]
-//        friendLuckListView = new ListView<>();
-//        friendLuckListView.setId("friendLuckListView");
-//        friendLuckListView.setPrefSize(665, 460);
-//        friendLuckListView.setLayoutY(75);
-//        friendLuckListView.getStyleClass().add("friendLuckListView");
-//        friendLuckPaneChildren.add(friendLuckListView);
 
     }
 

@@ -18,9 +18,10 @@ public interface IChatEvent {
      * @param talkId   对话Id(好友ID/群组ID)
      * @param talkType 对话框类型；0好友、1群组
      * @param msg      发送消息内容
+     * @param msgType  消息类型；0文字消息、1固定表情
      * @param msgDate  发送消息时间
      */
-    void doSendMsg(String userId, String talkId, Integer talkType, String msg, Date msgDate);
+    void doSendMsg(String userId, String talkId, Integer talkType, String msg, Integer msgType, Date msgDate);
 
     /**
      * 事件处理；开启与好友发送消息 [点击发送消息时候触发 -> 添加到对话框、选中、展示对话列表]

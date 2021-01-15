@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  */
 public abstract class UIObject extends Stage {
 
-    protected Parent root;
+    public Parent root;
     private double xOffset;
     private double yOffset;
 
@@ -43,6 +43,22 @@ public abstract class UIObject extends Stage {
         root.setOnMouseReleased(event -> {
             root.setCursor(Cursor.DEFAULT);
         });
+    }
+
+    public double x(){
+        return getX();
+    }
+
+    public double y(){
+        return getY();
+    }
+
+    public double width(){
+        return getWidth();
+    }
+
+    public double height(){
+        return getHeight();
     }
 
     // 初始化页面

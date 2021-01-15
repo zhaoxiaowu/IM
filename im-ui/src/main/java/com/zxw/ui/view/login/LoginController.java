@@ -8,10 +8,11 @@ import com.zxw.ui.view.chat.IChatMethod;
 public class LoginController extends LoginView implements ILoginMethod {
 
     private LoginEventDefine loginEventDefine;
+    private IChatMethod chat;
 
-
-    public LoginController(ILoginEvent ILoginEven) {
+    public LoginController(ILoginEvent ILoginEven, IChatMethod chat) {
         super(ILoginEven);
+        this.chat = chat;
     }
 
     @Override
@@ -36,9 +37,10 @@ public class LoginController extends LoginView implements ILoginMethod {
 
     @Override
     public void doLoginSuccess() {
-        System.out.println("登陆成功，执行跳转操作");
         // 关闭原窗口
         close();
+        // 打开聊天窗口
+        chat.doShow();
     }
 
 }

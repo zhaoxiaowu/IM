@@ -1,6 +1,7 @@
 package com.zxw.ui.view.chat;
 
 import com.zxw.ui.view.chat.data.TalkBoxData;
+import com.zxw.ui.view.face.FaceController;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
@@ -10,6 +11,7 @@ import java.util.Date;
 public class ChatEventDefine {
 
     private ChatView chatView;
+    private IChatEvent chatEvent;
     private IChatMethod chatMethod;
 
     Button bar_chat;
@@ -19,8 +21,9 @@ public class ChatEventDefine {
     Button bar_group;
     Pane group_bar_group;
 
-    public ChatEventDefine(ChatView chatView,IChatMethod chatMethod) {
+    public ChatEventDefine(ChatView chatView, IChatEvent chatEvent, IChatMethod chatMethod) {
         this.chatView = chatView;
+        this.chatEvent = chatEvent;
         this.chatMethod = chatMethod;
 
         chatView.move();
@@ -34,6 +37,7 @@ public class ChatEventDefine {
         barFriend();         // 好友
         doEventTextSend();   // 发送消息事件[键盘]
         doEventTouchSend();  // 发送消息事件[按钮]
+        doEventToolFace();   // 表情窗体
     }
 
 
@@ -176,7 +180,7 @@ public class ChatEventDefine {
         // 发送消息
         System.out.println("发送消息：" + msg);
         // 发送事件给自己添加消息
-        chatMethod.addTalkMsgRight(talkBoxData.getTalkId(), msg, msgDate, true, true, false);
+        chatMethod.addTalkMsgRight(talkBoxData.getTalkId(), msg, 0, msgDate, true, true, false);
         //清楚内容 鼠标重新定位
         txt_input.clear();
     }
@@ -204,6 +208,15 @@ public class ChatEventDefine {
             switchBarGroup(chatView.$("bar_group", Button.class), chatView.$("group_bar_group", Pane.class), false);
             // 3. 事件处理；填充到对话框
             System.out.println("事件处理；填充到对话框");
+        });
+    }
+
+    // 表情
+    private void doEventToolFace() {
+        FaceController face = new FaceController(chatView, chatView, chatEvent, chatMethod);
+        Button tool_face = chatView.$("tool_face", Button.class);
+        tool_face.setOnMousePressed(event -> {
+            face.doShowFace(chatMethod.getToolFaceX(), chatMethod.getToolFaceY());
         });
     }
 }
